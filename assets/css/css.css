@@ -24,6 +24,10 @@ img.center {
 	color: red;
 }
 
+.hidden {
+	display: none;
+}
+
 .radio.inline {
 	font-size: 12px;
 }
@@ -61,9 +65,11 @@ img.center {
 	width: 20%;
 }
 
+.tablesorter table,
 .tablesorter table th {
-	/* fix this 333px width */
-	width: 333px;
+	width: 100%;
+}
+.tablesorter table th {
 	border: none;
 }
 
