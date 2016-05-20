@@ -5,14 +5,13 @@
 		<li><a href="#search" data-toggle="collapse"><span class="glyphicon glyphicon-search"></span> Search
 		<span class="glyphicon glyphicon-chevron-down pull-right"></span></a>
 			<div id="search" class="collapse">
-				<form class="form-inline" action="/ccs-cbrso-webapp/search.php" method="post">
+				<form class="form-inline" action="/ccs-cbrso-webapp/search.php" method="get">
 					<div class="form-group">
 						<div class="col-md-12">
 							<div class="input-group">
 								<input class="form-control" type="text" name="keyword" value=""
 									placeholder="Search for..." required><span
-									class="input-group-btn"> <input class="btn btn-default"
-									name="submit" type="submit" value="Go">
+									class="input-group-btn"> <input class="btn btn-default" type="submit" value="search">
 								</span>
 							</div>
 						</div>

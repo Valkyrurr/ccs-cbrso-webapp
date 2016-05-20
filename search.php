@@ -33,9 +33,9 @@ require ("database/database.php");
 $categories = array("theme" => 1, "area" => 2, "title" => 3, "teacher" => 4, "student" => 5);
 $category_headers = array("Thematic Area", "CCS Area", "Research Topic", "Adviser", "Members");
 
-if (isset ( $_POST ['submit'] )) {
-	$keyword = trim($_POST ['keyword']);
-	$category = $_POST['category'];
+if (isset ($_GET)) {
+	$keyword = trim($_GET ['keyword']);
+	$category = $_GET['category'];
 	
 	$keywords = explode(" ", $keyword);
 	foreach($keywords as $key => $value){
