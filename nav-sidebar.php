@@ -5,7 +5,7 @@
 		<li><a href="#search" data-toggle="collapse"><span class="glyphicon glyphicon-search"></span> Search
 		<span class="glyphicon glyphicon-chevron-down pull-right"></span></a>
 			<div id="search" class="collapse">
-				<form class="form-inline" action="/ccs-cbrso-webapp/search.php" method="get">
+				<form class="form-inline" action="/ccs-cbrso-webapp/search/search.php" method="get">
 					<div class="form-group">
 						<div class="col-md-12">
 							<div class="input-group">
