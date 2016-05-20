@@ -29,6 +29,6 @@ if (isset ( $_POST ['submit'] )) {
 	} else {
 		echo "Registration Failed: Username already exists!";	
 	}
-	header("refresh: 5; url=index.php");
+	header('Location: index.php', TRUE, 302);
 }
 ?>

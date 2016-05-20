@@ -58,7 +58,6 @@
 					</form>
 				</div>
 				<div class="tab-pane" id="register-tab">
-					<p>Assume password-validation is working.</p>
 					<form action="register.php" method="post" class="tab-pane">
 						<div class="form-group">
 							<input name="username" type="text" class="form-control"
