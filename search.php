@@ -18,8 +18,8 @@
 <script>
 $(document).ready(function() 
 	    { 
-	        $("#sortthis").tablesorter(); 
-	    } 
+	        $("#sortthis").tablesorter({widthFixed: true});
+		} 
 	); 
 </script>
 </head>
@@ -31,6 +31,7 @@ require ("sessions.php");
 require ("database/database.php");
 
 $categories = array("theme" => 1, "area" => 2, "title" => 3, "teacher" => 4, "student" => 5);
+$category_headers = array("Thematic Area", "CCS Area", "Research Topic", "Adviser", "Members");
 
 if (isset ( $_POST ['submit'] )) {
 	$keyword = trim($_POST ['keyword']);
@@ -66,14 +67,28 @@ if (isset ( $_POST ['submit'] )) {
 	$stmt->execute(array(":keyword" => $keyword));
 	$rows = $stmt->fetchAll();
 	echo "Found " . $stmt->rowCount() . " results.";
-	echo "<table id='sortthis' class='tablesorter'><thead><tr><th>Theme</th><th>Area</th><th>Title</th><th>Teacher</th><th>Student</th></tr></thead>";
+	echo "<table id='sortthis' class='tablesorter'><thead><tr><th>$category_headers[0]</th><th>$category_headers[1]</th><th>$category_headers[2]</th><th>$category_headers[3]</th><th>$category_headers[4]</th></tr></thead>";
 	echo "<tbody>";
-	foreach ($rows as $row){		
+	foreach ($rows as $row){
+		$adviser = explode(" ", $row['teacher']);
+		foreach($adviser as $key => $value){
+			if(strlen($value) == 1){
+				$adviser[$key] = $value . ".";
+			}
+		}
+		$adviser = implode(" ", $adviser);
+		$students = explode(",", $row['student']);
 		echo "<tr>";
-		echo "<td>" . $row['theme'] . "</td><td>" . $row['area'] . "</td><td>" . $row['title'] . "</td><td>" . $row['teacher'] . "</td><td>" . $row['student'] . "</td>";
+		echo "<td>" . $row['theme'] . "</td><td>" . $row['area'] . "</td><td>" . $row['title'] . "</td><td>" . $adviser . "</td>";
+		echo "<td><table id='sortthat'><thead><tr><th></th></tr></thead><tbody>";
+		foreach($students as $student){
+			echo "<tr><td>" . $student . "</td></tr>"; 
+		}
+		echo "</tbody></table></td>";
 		echo "</tr>";
 	}
 	echo "</tbody></table>";
+	echo "Found " . $stmt->rowCount() . " results.";
 }
 ?>
 </div>

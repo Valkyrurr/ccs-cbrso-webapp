@@ -8,34 +8,69 @@ img.center {
 .background {
 	background: url(../resources/background.jpg) fixed no-repeat center;
 }
+
 .container-fluid {
 	padding: 0em 2em 0em 2em;
 	padding-bottom: 2em;
 	margin-bottom: 2em;
 }
+
 .container-fluid.col-md-offset-2 {
 	margin-top: 3.33em;
 }
+
 .form-group.required .control-label:after {
 	content: "*";
 	color: red;
 }
+
 .radio.inline {
 	font-size: 12px;
 }
+
 .sub-header {
 	background-color: #337ab7;
 	color: #fff;
 	margin-bottom: 1em;
 	padding: 0.67em;
 }
+
 .tab-pane {
 	margin-top: 1em;
 }
+
+.tablesorter th {
+	width: 10%;
+	text-align: center;
+}
+
+.tablesorter td {
+	font-family: Arial, Sans-serif;
+	font-size: 15px;	
+}
+
+.tablesorter th:nth-child(3) {
+	width: 40%;
+}
+
+.tablesorter td:nth-child(3) {
+	text-decoration: underline;
+}
+
+.tablesorter th:nth-child(4), .tablesorter th:nth-child(5) {
+	width: 20%;
+}
+
+.tablesorter table th {
+	/* fix this 333px width */
+	width: 333px;
+	border: none;
+}
+
 .ui-autocomplete {
-    max-height: 100px;
-    overflow-y: auto;
-    overflow-x: hidden;
+	max-height: 100px;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 
 #accordion {
@@ -45,10 +80,18 @@ img.center {
 	height: 100vh;
 	background-color: #000;
 }
-#register > *,
-#register > ul > li > a,
-#search > * {
+
+#register>*, #register>ul>li>a, #search>* {
 	color: #fff;
 	padding-top: 1em;
 	padding-bottom: 1em;
+}
+
+#sortthat tr:last-child>td {
+	width: 100%;
+	border-bottom: none;
+}
+
+#sortthat tr td {
+	padding: 0;
 }
