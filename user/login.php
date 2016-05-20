@@ -8,8 +8,8 @@ if (isset ( $_POST ['submit'] )) {
 	define('InvalidUsername', 1);
 	define('InvalidPassword', 2);
 	
-	$username = $_POST ['username'];
-	$password = $_POST ['password'];
+	$username = trim($_POST ['username']);
+	$password = trim($_POST ['password']);
 	
 	$dbh = new Database ();
 	$stmt = $dbh->prepare ( "SELECT * FROM `users` WHERE `username`=:username;" );

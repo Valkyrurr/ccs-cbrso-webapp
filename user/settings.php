@@ -30,9 +30,9 @@ require("../includes/database/database.php");
 		?>
 		<?php 
 			if(isset($_POST['submit'])){
-				$first_name = $_POST['first_name'];
-				$last_name = $_POST['last_name'];
-				$email = $_POST['email'];
+				$first_name = trim($_POST['first_name']);
+				$last_name = trim($_POST['last_name']);
+				$email = trim($_POST['email']);
 				$stmt = $dbh->prepare("UPDATE users SET first_name=:first_name, last_name=:last_name, email=:email WHERE username=:username;");
 				$stmt->execute(array(":first_name" => $first_name, ":last_name" => $last_name, ":email" => $email, ":username" => $_SESSION['username']));
 				header('Location: settings.php', TRUE, 302);

@@ -5,9 +5,9 @@ if(isset($_SESSION['logged']) && $_SESSION['logged'] === TRUE) header('Location:
 
 if (isset ( $_POST ['submit'] )) {
 	unset($_POST['submit']);
-	$username = $_POST ['username'];
+	$username = trim($_POST ['username']);
 	$password = password_hash ( $_POST ['password'], PASSWORD_BCRYPT );
-	$email = $_POST ['email'];
+	$email = trim($_POST ['email']);
 	
 	$dbh = new Database ();
 	$stmt = $dbh->prepare ( "SELECT * FROM `users` WHERE username=:username;" );
