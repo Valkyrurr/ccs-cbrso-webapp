@@ -1,4 +1,4 @@
-<?php require("../sessions.php"); ?>
+<?php require("../includes/sessions.php"); ?>
 <?php if(isset($_SESSION['logged']) && $_SESSION['logged'] === TRUE) header('Location: ../index.php', TRUE, 302); ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +12,7 @@
 <link href="../assets/css/css.css" rel="stylesheet">
 </head>
 <body>
-	<?php include("../nav-sidebar.php"); ?>
+	<?php include("../includes/navbar.php"); ?>
 	<div class="container-fluid col-md-offset-2">
 		<div class="col-md-4 col-md-offset-4">
 			<ul class="nav nav-tabs">

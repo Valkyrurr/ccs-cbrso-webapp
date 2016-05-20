@@ -1,6 +1,6 @@
 <?php
-require ("../database/database.php");
-require ("../sessions.php");
+require ("../includes/database/database.php");
+require ("../includes/sessions.php");
 if(isset($_SESSION['logged']) && $_SESSION['logged'] === TRUE) header('Location: ../index.php', TRUE, 302);
 
 if (isset ( $_POST ['submit'] )) {

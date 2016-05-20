@@ -1,6 +1,6 @@
 <?php 
-require("../sessions.php");
-require("../database/database.php");
+require("../includes/sessions.php");
+require("../includes/database/database.php");
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +18,7 @@ require("../database/database.php");
 <script src="../assets/js/js.js"></script>
 </head>
 <body>
-	<?php include("../nav-sidebar.php"); ?>
+	<?php include("../includes/navbar.php"); ?>
 	<div class="container-fluid col-md-offset-2">
 		<?php if(isset($_SESSION['logged']) && $_SESSION['logged'] === TRUE): ?>
 		<?php 
