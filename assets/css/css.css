@@ -1,0 +1,54 @@
+@CHARSET "UTF-8";
+
+img.center {
+	display: block;
+	margin: 0 auto;
+}
+
+.background {
+	background: url(../resources/background.jpg) fixed no-repeat center;
+}
+.container-fluid {
+	padding: 0em 2em 0em 2em;
+	padding-bottom: 2em;
+	margin-bottom: 2em;
+}
+.container-fluid.col-md-offset-2 {
+	margin-top: 3.33em;
+}
+.form-group.required .control-label:after {
+	content: "*";
+	color: red;
+}
+.radio.inline {
+	font-size: 12px;
+}
+.sub-header {
+	background-color: #337ab7;
+	color: #fff;
+	margin-bottom: 1em;
+	padding: 0.67em;
+}
+.tab-pane {
+	margin-top: 1em;
+}
+.ui-autocomplete {
+    max-height: 100px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#accordion {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	background-color: #000;
+}
+#register > *,
+#register > ul > li > a,
+#search > * {
+	color: #fff;
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
