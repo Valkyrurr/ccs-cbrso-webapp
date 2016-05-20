@@ -24,11 +24,11 @@ $(document).ready(function()
 </script>
 </head>
 <body>
-<?php include("../nav-sidebar.php"); ?>
+<?php include("../includes/navbar.php"); ?>
 <div class="container-fluid col-md-10 col-md-offset-2">
 <?php
-require ("../sessions.php");
-require ("../database/database.php");
+require ("../includes/sessions.php");
+require ("../includes/database/database.php");
 
 $categories = array("theme" => 1, "area" => 2, "title" => 3, "teacher" => 4, "student" => 5);
 $category_headers = array("Thematic Area", "CCS Area", "Research Topic", "Adviser", "Members");

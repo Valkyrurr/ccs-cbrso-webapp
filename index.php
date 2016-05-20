@@ -1,4 +1,4 @@
-<?php require("sessions.php"); ?>
+<?php require("includes/sessions.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +11,7 @@
 <link href="assets/css/css.css" rel="stylesheet">
 </head>
 <body>
-	<?php include("nav-sidebar.php"); ?>
+	<?php include("includes/navbar.php"); ?>
 	<div class="container-fluid col-md-offset-2">
 		<div class="row page-header">
 			<h1 class="text-center">College of Computer Studies</h1>
