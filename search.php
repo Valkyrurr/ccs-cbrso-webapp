@@ -33,8 +33,14 @@ require ("database/database.php");
 $categories = array("theme" => 1, "area" => 2, "title" => 3, "teacher" => 4, "student" => 5);
 
 if (isset ( $_POST ['submit'] )) {
-	$keyword = $_POST ['keyword'];
+	$keyword = trim($_POST ['keyword']);
 	$category = $_POST['category'];
+	
+	$keywords = explode(" ", $keyword);
+	foreach($keywords as $key => $value){
+		$keywords[$key] = "+" . $value . "*";
+	}
+	$keyword = implode(" ", $keywords);
 	
 	$dbh = new Database ();
 	$defaultsqlHead = "SELECT themes.`theme` AS theme, areas.`area` AS area, titles.`title` AS title, CONCAT(teachers.`first_name`, ' ', teachers.`middle_name`, ' ', teachers.`last_name`) AS teacher, GROUP_CONCAT(CONCAT(students.`first_name`, IF(students.middle_name IS NULL, '', CONCAT(' ', students.middle_name)), ' ', students.`last_name`, IF(students.ext IS NULL, '', CONCAT(' ', students.ext)))) AS student
@@ -57,7 +63,7 @@ if (isset ( $_POST ['submit'] )) {
 	}
 	
 	$stmt = $dbh->prepare($defaultsqlHead . $sql . $defaultsqlFoot);
-	$stmt->execute(array(":keyword" => $keyword . "*"));
+	$stmt->execute(array(":keyword" => $keyword));
 	$rows = $stmt->fetchAll();
 	echo "Found " . $stmt->rowCount() . " results.";
 	echo "<table id='sortthis' class='tablesorter'><thead><tr><th>Theme</th><th>Area</th><th>Title</th><th>Teacher</th><th>Student</th></tr></thead>";
