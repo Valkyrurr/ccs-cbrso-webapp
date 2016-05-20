@@ -16,3 +16,10 @@ $('#register').on('hidden.bs.collapse', function () {
 $('#register').on('shown.bs.collapse', function () {
     $(this).prev().find(".glyphicon.glyphicon-chevron-down").removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-up");
 });
+
+$(document).ready(function(){
+	$('input[type=button]').click(function(){
+		$(this).hide();
+		$(".btn.hidden").removeClass("hidden").show();
+	});
+});

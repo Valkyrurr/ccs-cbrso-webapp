@@ -13,6 +13,9 @@ require("../database/database.php");
 <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"> -->
 <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
 <link href="../assets/css/css.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
+<script src="../assets/js/js.js"></script>
 </head>
 <body>
 	<?php include("../nav-sidebar.php"); ?>
@@ -69,7 +72,9 @@ require("../database/database.php");
 				<div class="col-md-7"><input class="form-control" type="text"></div>
 			</div>
 			<div class="form-group">
-				<div class="col-md-7 col-md-offset-3"><input class="btn btn-md btn-primary" name="submit" type="submit" value="Proceed"></div>
+				<div class="col-md-7 col-md-offset-3">
+					<input class="btn btn-md btn-primary" type="submit" name="submit" value="Proceed">
+				</div>
 			</div>
 		</form>
 		</div>
@@ -77,10 +82,5 @@ require("../database/database.php");
 		<p>Restricted Access!</p>
 		<?php endif; ?>
 	</div>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
-	<script src="../assets/js/bootstrap.min.js"></script>
-	<script src="../assets/js/js.js"></script>
 </body>
 </html>
