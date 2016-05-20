@@ -21,11 +21,10 @@ if (isset ( $_POST ['submit'] )) {
 		foreach ( $rows as $row )
 			;
 		if (password_verify ( $password, $row ['password'] )) {
-			header ( "refresh: 3; url=index.php" );
+			header('Location: index.php', TRUE, 302);
 			$_SESSION ['logged'] = TRUE;
 			$_SESSION ['username'] = $row ['username'];
 			setcookie("login-err", 0, time() - 1);
-			echo "Login Success!";
 			try {
 				$stmt = $dbh->prepare ( "UPDATE `users` SET logged_last = NOW() WHERE username=:username;" );
 				$stmt->execute ( array (
@@ -37,12 +36,10 @@ if (isset ( $_POST ['submit'] )) {
 		} else {
 			setcookie("login-err", InvalidPassword, time() + 1);
 			header('Location: index.php', TRUE, 302);
-			echo "Login Failed: Invalid password! Redirecting . . .";
 		}
 	} else {
 		setcookie("login-err", InvalidUsername, time() + 1);
 		header('Location: index.php', TRUE, 302);
-		echo "Login Failed: Invalid username! Redirecting . . .";
 	}
 }
 ?>
