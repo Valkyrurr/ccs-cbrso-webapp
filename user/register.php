@@ -16,8 +16,9 @@ if (isset ( $_POST ['submit'] )) {
 	) );
 	if ($stmt->rowCount () == 0) {
 		try {
-			$stmt = $dbh->prepare ( "INSERT INTO `users` VALUES(NULL, '', '', :username, :password, NOW(), '');" );
+			$stmt = $dbh->prepare ( "INSERT INTO `users` VALUES(NULL, '', '', :email, :username, :password, NOW(), '');" );
 			$stmt->execute ( array (
+					':email' => $email,
 					':username' => $username,
 					':password' => $password 
 			) );
