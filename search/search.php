@@ -44,7 +44,7 @@ if (isset ($_GET)) {
 	$keyword = implode(" ", $keywords);
 	
 	$dbh = new Database ();
-	$defaultsqlHead = "SELECT themes.`theme` AS theme, areas.`area` AS area, titles.`title` AS title, CONCAT(teachers.`first_name`, ' ', teachers.`middle_name`, ' ', teachers.`last_name`) AS teacher, GROUP_CONCAT(CONCAT(students.`first_name`, IF(students.middle_name IS NULL, '', CONCAT(' ', students.middle_name)), ' ', students.`last_name`, IF(students.ext IS NULL, '', CONCAT(' ', students.ext)))) AS student
+	$defaultsqlHead = "SELECT themes.`theme` AS theme, areas.`area` AS area, titles.`title` AS title, CONCAT(teachers.`first_name`, ' ', teachers.`middle_name`, ' ', teachers.`last_name`) AS teacher, GROUP_CONCAT(CONCAT(students.`first_name`, IF(students.middle_name IS NULL, '', CONCAT(' ', students.middle_name)), ' ', students.`last_name`, IF(students.ext IS NULL, '', CONCAT(', ', students.ext))) SEPARATOR ';') AS student
 		FROM root
 		LEFT JOIN themes ON themes.id=root.theme_id
 		LEFT JOIN areas ON areas.id=root.area_id
@@ -77,7 +77,17 @@ if (isset ($_GET)) {
 			}
 		}
 		$adviser = implode(" ", $adviser);
-		$students = explode(",", $row['student']);
+		$students = explode(";", $row['student']);
+		foreach($students as $student => $name){	//student names
+			$name = explode(" ", $name);	// student: Eriko Florenze S Torralba
+			foreach($name as $key => $value){	// 0 => Eriko, 1 => Florenze, 2 => S, 3 => Torralba
+				if(strlen($value) == 1){
+					$name[$key] = $value . ".";
+				}
+			}
+			$name = implode(" ", $name);
+			$students[$student] = $name;
+		}
 		echo "<tr>";
 		echo "<td>" . $row['theme'] . "</td><td>" . $row['area'] . "</td><td>" . $row['title'] . "</td><td>" . $adviser . "</td>";
 		echo "<td><table id='sortthat'><thead><tr><th></th></tr></thead><tbody>";
