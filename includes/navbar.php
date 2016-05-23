@@ -15,7 +15,8 @@
 							<div class="input-group">
 								<input class="form-control" type="text" name="keyword" value=""
 									placeholder="Search for..." pattern=".{3,}"
-									title="Input minimum length is 3." required><span
+									oninvalid="setCustomValidity('Input minimum length is 3.')"
+									onchange="setCustomValidity('')" required><span
 									class="input-group-btn"> <input class="btn btn-default"
 									type="submit" value="search">
 								</span>
