@@ -4,7 +4,6 @@ require ("../includes/sessions.php");
 if(isset($_SESSION['logged']) && $_SESSION['logged'] === TRUE) header('Location: ../index.php', TRUE, 302);
 
 if (isset ( $_POST ['submit'] )) {
-	unset($_POST['submit']);
 	define('InvalidUsername', 1);
 	define('InvalidPassword', 2);
 	

@@ -24,6 +24,14 @@ img.center {
 	color: red;
 }
 
+.help-block.success, .help-block.fail {
+	border-radius: 5px;
+	padding: 5px;
+	background-color: #dff0d8;
+}
+.help-block.fail {
+	background-color: #f2dede;
+}
 .hidden {
 	display: none;
 }

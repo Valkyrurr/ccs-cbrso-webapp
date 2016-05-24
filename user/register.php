@@ -6,7 +6,7 @@ if(isset($_SESSION['logged']) && $_SESSION['logged'] === TRUE) header('Location:
 if (isset ( $_POST ['submit'] )) {
 	unset($_POST['submit']);
 	$username = trim($_POST ['username']);
-	$password = password_hash ( $_POST ['password'], PASSWORD_BCRYPT );
+	$password = password_hash ( $_POST ['verified-password'], PASSWORD_BCRYPT );
 	$email = trim($_POST ['email']);
 	
 	$dbh = new Database ();
