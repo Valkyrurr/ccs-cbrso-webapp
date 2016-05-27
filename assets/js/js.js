@@ -38,7 +38,7 @@ $(document).ready(function() {
 	});
 });
 
-/* Used for /root/user/index.php. WORKING! Used for /root/user/settings.php. */
+/* Used for /root/user/index.php. WORKING! Used for /root/user/settings.php. WORKING! */
 var password = document.getElementById("password");
 var validate_password = document.getElementById("validate-password");
 var validate_password_ref = document.getElementById("validate-password-ref");

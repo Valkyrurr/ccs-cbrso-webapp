@@ -10,15 +10,17 @@
 <link rel="stylesheet" href="/ccs-cbrso-webapp/assets/css/css.css">
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.1/css/theme.default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.1/css/jquery.tablesorter.pager.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 <script src="/ccs-cbrso-webapp/assets/js/bootstrap.min.js"></script>
 <script src="/ccs-cbrso-webapp/assets/js/js.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.1/js/jquery.tablesorter.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.1/js/extras/jquery.tablesorter.pager.min.js"></script>
 <script>
 $(document).ready(function() 
 	    { 
-	        $("#sortthis").tablesorter({widthFixed: true});
+	        $("#sortthis").tablesorter({widthFixed: true}).tablesorterPager({container: $(".pager")});
 		} 
 	); 
 </script>
@@ -105,6 +107,20 @@ if (isset ($_GET)) {
 	}
 }
 ?>
+	<form id="pagination" class="pager" style="text-align: right;">
+		<img src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.1/css/images/first.png" class="first"/>
+		<img src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.1/css/images/prev.png" class="prev"/>
+		<input type="text" class="pagedisplay" disabled>
+		<img src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.1/css/images/next.png" class="next"/>
+		<img src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.1/css/images/last.png" class="last"/>
+		<select class="pagesize">
+			<option value="10" selected>10</option>
+			<option value="20">20</option>
+			<option value="30">30</option>
+			<option value="40">40</option>
+			<option value="50">50</option>
+		</select>
+	</form>
 </div>
 </body>
 </html>
