@@ -20,7 +20,7 @@ require("../includes/database/database.php");
 	<div class="container-fluid col-md-offset-2">
 		<?php if(isset($_SESSION['logged']) && $_SESSION['logged'] === TRUE): ?>
 		<?php 
-			$dbh = new Database();
+			$dbh = Database::getInstance();
 			$stmt = $dbh->prepare("SELECT * FROM users WHERE username=:username;");
 			$stmt->execute(array(":username" => $_SESSION['username']));
 			$rows =$stmt->fetchAll();

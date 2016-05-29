@@ -10,15 +10,14 @@ if (isset ( $_POST ['submit'] )) {
 	$username = trim($_POST ['username']);
 	$password = trim($_POST ['password']);
 	
-	$dbh = new Database ();
+	$dbh = Database::getInstance();
 	$stmt = $dbh->prepare ( "SELECT * FROM `users` WHERE `username`=:username;" );
 	$stmt->execute ( array (
 			':username' => $username 
 	) );
 	$rows = $stmt->fetchAll ();
 	if ($stmt->rowCount () == 1) {
-		foreach ( $rows as $row )
-			;
+		foreach ( $rows as $row );
 		if (password_verify ( $password, $row ['password'] )) {
 			header('Location: index.php', TRUE, 302);
 			$_SESSION ['logged'] = TRUE;

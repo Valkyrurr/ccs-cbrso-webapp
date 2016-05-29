@@ -48,7 +48,7 @@ if (isset ($_GET)) {
 		}
 		$keyword = implode(" ", $keywords);
 		
-		$dbh = new Database ();
+		$dbh = Database::getInstance();
 		$defaultsqlHead = "SELECT themes.`theme` AS theme, areas.`area` AS area, titles.`title` AS title, CONCAT(teachers.`first_name`, ' ', teachers.`middle_name`, ' ', teachers.`last_name`) AS teacher, GROUP_CONCAT(CONCAT(students.`first_name`, IF(students.middle_name IS NULL, '', CONCAT(' ', students.middle_name)), ' ', students.`last_name`, IF(students.ext IS NULL, '', CONCAT(', ', students.ext))) SEPARATOR ';') AS student
 			FROM root
 			LEFT JOIN themes ON themes.id=root.theme_id

@@ -9,7 +9,7 @@ if (isset ( $_POST ['submit'] )) {
 	$password = password_hash ( $_POST ['verified-password'], PASSWORD_BCRYPT );
 	$email = trim($_POST ['email']);
 	
-	$dbh = new Database ();
+	$dbh = Database::getInstance();
 	$stmt = $dbh->prepare ( "SELECT * FROM `users` WHERE username=:username;" );
 	$stmt->execute ( array (
 			':username' => $username 
