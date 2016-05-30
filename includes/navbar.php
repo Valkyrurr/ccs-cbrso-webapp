@@ -1,11 +1,11 @@
+<?php require("sessions.php"); ?>
 <div id="accordion" class="col-md-2 sidebar">
-	<img src="<?php echo "/ccs-cbrso-webapp/assets/imgs/logo.png"; ?>"
-		class="page-header img-responsive">
+	<img src="/ccs-cbrso-webapp/assets/imgs/logo.png" class="page-header img-responsive">
 	<ul class="nav nav-sidebar">
 		<li><a href="/ccs-cbrso-webapp/index.php"><span
 				class="glyphicon glyphicon-home"></span> Home</a></li>
 		<li><a href="#search" data-toggle="collapse"><span
-				class="glyphicon glyphicon-search"></span> Search <span
+				class="glyphicon glyphicon-search"></span> Search<span
 				class="glyphicon glyphicon-chevron-down pull-right"></span></a>
 			<div id="search" class="collapse">
 				<form class="form-inline"
@@ -33,12 +33,15 @@
 									value="5" required> Student Name</label>
 							</div>
 						</div>
+						<div class="col-md-12">
+						<a class="navbar-right navbar-link" href="/ccs-cbrso-webapp/search/advanced.php">Advanced Search</a>
+						</div>
 					</div>
 				</form>
 			</div></li>
 		<li><a href="/ccs-cbrso-webapp/nav-sidebar.php#register"
 			data-toggle="collapse"><span class="glyphicon glyphicon-pencil"></span>
-				Register <span class="glyphicon glyphicon-chevron-down pull-right"></span></a>
+				Register<span class="glyphicon glyphicon-chevron-down pull-right"></span></a>
 			<div id="register" class="collapse">
 				<ul>
 					<li><a href="">Research</a></li>
@@ -49,7 +52,6 @@
 		<li><a href="#"><span class="glyphicon glyphicon-book"></span> Logs</a></li>
 		<li><a href="/ccs-cbrso-webapp/user/settings.php"><span
 				class="glyphicon glyphicon-cog"></span> Settings</a></li>
-		<?php require("sessions.php"); ?>
 		<?php if(isset($_SESSION['logged']) && $_SESSION['logged'] === TRUE): ?>
 		<li><a href='/ccs-cbrso-webapp/user/logout.php'><span
 				class='glyphicon glyphicon-log-out'></span> Logout</a></li>
