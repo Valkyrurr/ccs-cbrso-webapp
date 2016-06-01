@@ -60,5 +60,6 @@
 				class='glyphicon glyphicon-log-in'></span> Login</a></li>
 		<?php endif; ?>
 		<?php var_dump($_SESSION); ?>
+		<?php echo "<br>" . date("d M Y"); ?>
 	</ul>
 </div>

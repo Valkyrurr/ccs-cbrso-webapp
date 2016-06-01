@@ -34,12 +34,15 @@ require("../includes/database/database.php");
 					<label class="col-md-3 control-label">Year</label>
 					<div class="col-md-7">
 						<select class="form-control">
-							<option>any Year</option>
-							<option>2015</option>
-							<option>2014</option>
-							<option>2013</option>
-							<option>2012</option>
-							<option>2011</option>
+							<option value=0>any Year</option>
+							<?php 
+								$i = date("Y");
+								$j = 2012;
+								while($i >= $j){
+									echo "<option value=$i>$i</option>";
+									$i--;
+								}
+							?>
 						</select>
 					</div>
 				</div>
@@ -47,11 +50,16 @@ require("../includes/database/database.php");
 					<label class="col-md-3 control-label">Adviser</label>
 					<div class="col-md-7">
 						<select class="form-control">
-							<option>any Adviser</option>
-							<option>2014</option>
-							<option>2013</option>
-							<option>2012</option>
-							<option>2011</option>
+							<option value=0>any Adviser</option>
+							<?php 
+								$dbh = Database::getInstance();
+								$stmt = $dbh->prepare("SELECT * FROM teachers ORDER BY last_name;");
+								$stmt->execute();
+								$rows = $stmt->fetchAll();
+								foreach($rows as $row){
+									echo "<option value=" . $row['id'] . ">" . $row['last_name'] . ", " . $row['first_name'] . "</option>";
+								}
+							?>
 						</select>
 					</div>
 				</div>
@@ -90,5 +98,10 @@ require("../includes/database/database.php");
 	<script src="/ccs-cbrso-webapp/assets/js/bootstrap.min.js"></script>
 	<script src="/ccs-cbrso-webapp/assets/js/js.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.1/js/jquery.tablesorter.js"></script>
+	<script type="text/javascript">
+	$(function() {
+	    $("select").selectmenu();                
+	});
+	</script>
 </body>
 </html>

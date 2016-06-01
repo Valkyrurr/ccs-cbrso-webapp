@@ -4,6 +4,10 @@ img.center {
 	display: block;
 	margin: 0 auto;
 }
+option{
+	max-height: 20px;
+	height: 20px;
+}
 
 .background {
 	background: url(../resources/background.jpg) fixed no-repeat center;
@@ -82,9 +86,15 @@ img.center {
 }
 
 .ui-autocomplete {
-	max-height: 100px;
+	max-height: 200px;
 	overflow-y: auto;
 	overflow-x: hidden;
+}
+.ui-selectmenu-menu .ui-menu {
+	max-height: 200px;
+}
+.ui-selectmenu-text {
+	background-color: #fff;
 }
 
 #accordion {
