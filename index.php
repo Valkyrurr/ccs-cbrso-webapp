@@ -1,15 +1,8 @@
 <?php require("includes/sessions.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CCS-CbRSO</title>
-<!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"> -->
-<link href="assets/css/bootstrap.min.css" rel="stylesheet">
-<link href="assets/css/css.css" rel="stylesheet">
-</head>
+<?php $title = ucwords(basename($_SERVER['SCRIPT_NAME'], ".php")); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/ccs-cbrso-webapp/includes/html/header.php"); ?>
 <body>
 	<?php include("includes/navbar.php"); ?>
 	<div class="container-fluid col-md-offset-2">
@@ -449,11 +442,6 @@
 			</p>
 		</div>
 	</div>
-
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
-	<script src="assets/js/bootstrap.min.js"></script>
-	<script src="assets/js/js.js"></script>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/ccs-cbrso-webapp/includes/html/footer.php"); ?>
 </body>
 </html>

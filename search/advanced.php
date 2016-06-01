@@ -5,16 +5,8 @@ require("../includes/database/database.php");
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CCS-CbRSO</title>
-<link rel="stylesheet" href="/ccs-cbrso-webapp/assets/css/bootstrap.min.css">
-<link rel="stylesheet" href="/ccs-cbrso-webapp/assets/css/css.css">
-<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.1/css/theme.default.min.css">
-</head>
+<?php $title = ucwords(basename($_SERVER['SCRIPT_NAME'], ".php")); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/ccs-cbrso-webapp/includes/html/header.php"); ?>
 <body>
 	<?php include("../includes/navbar.php"); ?>
 	<div class="container-fluid col-md-offset-2">
@@ -92,16 +84,12 @@ require("../includes/database/database.php");
 				</div>
 			</form>
 		</div>
-	</div>	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-	<script src="/ccs-cbrso-webapp/assets/js/bootstrap.min.js"></script>
-	<script src="/ccs-cbrso-webapp/assets/js/js.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.1/js/jquery.tablesorter.js"></script>
-	<script type="text/javascript">
-	$(function() {
-	    $("select").selectmenu();                
-	});
-	</script>
+	</div>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/ccs-cbrso-webapp/includes/html/footer.php"); ?>
+<script type="text/javascript">
+$(function() {
+    $("select").selectmenu();                
+});
+</script>
 </body>
 </html>
