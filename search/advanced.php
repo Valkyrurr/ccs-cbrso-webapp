@@ -1,6 +1,7 @@
-<?php 
-require("../includes/sessions.php");
-require("../includes/database/database.php");
+<?php
+require_once("../includes/sessions.php");
+require_once("../includes/database/database.php");
+require_once("../includes/logger/logger_error_handler.php");
 ?>
 
 <!DOCTYPE html>
@@ -21,13 +22,13 @@ require("../includes/database/database.php");
 					<label class="col-md-3 control-label">None of these words</label>
 					<div class="col-md-7"><input class="form-control" type="text"></div>
 				</div>
-				
+
 				<div class="form-group">
 					<label class="col-md-3 control-label">Year</label>
 					<div class="col-md-7">
 						<select class="form-control">
 							<option value=0>any Year</option>
-							<?php 
+							<?php
 								$i = date("Y");
 								$j = 2012;
 								while($i >= $j){
@@ -43,7 +44,7 @@ require("../includes/database/database.php");
 					<div class="col-md-7">
 						<select class="form-control">
 							<option value=0>any Adviser</option>
-							<?php 
+							<?php
 								$dbh = Database::getInstance();
 								$stmt = $dbh->prepare("SELECT * FROM teachers ORDER BY last_name;");
 								$stmt->execute();
@@ -88,7 +89,7 @@ require("../includes/database/database.php");
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/ccs-cbrso-webapp/includes/html/footer.php"); ?>
 <script type="text/javascript">
 $(function() {
-    $("select").selectmenu();                
+    $("select").selectmenu();
 });
 </script>
 </body>

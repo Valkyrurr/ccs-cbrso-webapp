@@ -1,6 +1,7 @@
-<?php 
-require("../includes/sessions.php");
-require("../includes/database/database.php");
+<?php
+require_once("../includes/sessions.php");
+require_once("../includes/database/database.php");
+require_once("../includes/logger/logger_error_handler.php");
 ?>
 
 <!DOCTYPE html>
@@ -11,15 +12,15 @@ require("../includes/database/database.php");
 	<?php include("../includes/navbar.php"); ?>
 	<div class="container-fluid col-md-offset-2">
 		<?php if(isset($_SESSION['logged']) && $_SESSION['logged'] === TRUE): ?>
-		<?php 
+		<?php
 			$dbh = Database::getInstance();
 			$stmt = $dbh->prepare("SELECT * FROM users WHERE username=:username;");
 			$stmt->execute(array(":username" => $_SESSION['username']));
 			$rows =$stmt->fetchAll();
 			foreach($rows as $row);
 		?>
-		<?php 
-			if(isset($_POST['submit'])){				
+		<?php
+			if(isset($_POST['submit'])){
 				if(isset($_POST['verified-password']) && $_POST['verified-password'] !== ""){
 					if(password_verify($_POST['current-password'], $row['password'])){
 						$password = password_hash($_POST['verified-password'], PASSWORD_BCRYPT);
@@ -92,7 +93,7 @@ require("../includes/database/database.php");
 		<?php else: ?>
 		<p>Restricted Access!</p>
 		<?php endif; ?>
-	</div>	
+	</div>
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/ccs-cbrso-webapp/includes/html/footer.php"); ?>
 </body>
 </html>

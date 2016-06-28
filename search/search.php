@@ -6,8 +6,9 @@
 <?php include("../includes/navbar.php"); ?>
 <div class="container-fluid col-md-10 col-md-offset-2">
 <?php
-require ("../includes/sessions.php");
-require ("../includes/database/database.php");
+require_once("../includes/sessions.php");
+require_once("../includes/database/database.php");
+require_once("../includes/logger/logger_error_handler.php");
 
 $categories = array("theme" => 1, "area" => 2, "title" => 3, "teacher" => 4, "student" => 5);
 $category_headers = array("Thematic Area", "CCS Area", "Research Topic", "Adviser", "Members");
@@ -15,7 +16,7 @@ $category_headers = array("Thematic Area", "CCS Area", "Research Topic", "Advise
 if (isset ($_GET)) {
 	$keyword = trim($_GET ['keyword']);
 	$category = $_GET['category'];
-	
+
 	if(strlen($keyword) < 3){
 		echo "Input minimum length is 3.";
 	} else {
@@ -24,7 +25,7 @@ if (isset ($_GET)) {
 			$keywords[$key] = "+" . $value . "*";
 		}
 		$keyword = implode(" ", $keywords);
-		
+
 		$dbh = Database::getInstance();
 		$defaultsqlHead = "SELECT themes.`theme` AS theme, areas.`area` AS area, titles.`title` AS title, CONCAT(teachers.`first_name`, ' ', teachers.`middle_name`, ' ', teachers.`last_name`) AS teacher, GROUP_CONCAT(CONCAT(students.`first_name`, IF(students.middle_name IS NULL, '', CONCAT(' ', students.middle_name)), ' ', students.`last_name`, IF(students.ext IS NULL, '', CONCAT(', ', students.ext))) SEPARATOR ';') AS student
 			FROM root
@@ -34,17 +35,17 @@ if (isset ($_GET)) {
 			INNER JOIN teachers ON teachers.id=root.teacher_id
 			INNER JOIN students ON students.id=root.student_id ";
 		$defaultsqlFoot = " GROUP BY theme, area, title, teacher;";
-		
+
 		foreach($categories as $key => $value){
 			if($category == $value){
 				if($value == 4 OR $value == 5){
-					$sql = "WHERE MATCH(".$key."s.first_name, ".$key."s.middle_name, ".$key."s.last_name) AGAINST(:keyword IN BOOLEAN MODE)";	
+					$sql = "WHERE MATCH(".$key."s.first_name, ".$key."s.middle_name, ".$key."s.last_name) AGAINST(:keyword IN BOOLEAN MODE)";
 				} else {
 					$sql = "WHERE MATCH(".$key."s.".$key.") AGAINST(:keyword IN BOOLEAN MODE)";
 				}
 			}
 		}
-		
+
 		$stmt = $dbh->prepare($defaultsqlHead . $sql . $defaultsqlFoot);
 		$stmt->execute(array(":keyword" => $keyword));
 		$rows = $stmt->fetchAll();
@@ -74,7 +75,7 @@ if (isset ($_GET)) {
 			echo "<td>" . $row['theme'] . "</td><td>" . $row['area'] . "</td><td>" . $row['title'] . "</td><td>" . $adviser . "</td>";
 			echo "<td><table id='sortthat'><thead><tr><th></th></tr></thead><tbody>";
 			foreach($students as $student){
-				echo "<tr><td>" . $student . "</td></tr>"; 
+				echo "<tr><td>" . $student . "</td></tr>";
 			}
 			echo "</tbody></table></td>";
 			echo "</tr>";
@@ -101,11 +102,11 @@ if (isset ($_GET)) {
 </div>
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/ccs-cbrso-webapp/includes/html/footer.php"); ?>
 <script>
-$(document).ready(function() 
-	    { 
+$(document).ready(function()
+	    {
 	        $("#sortthis").tablesorter({widthFixed: true}).tablesorterPager({container: $(".pager")});
-		} 
-	); 
+		}
+	);
 </script>
 </body>
 </html>

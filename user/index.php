@@ -1,4 +1,5 @@
-<?php require("../includes/sessions.php"); ?>
+<?php require_once("../includes/sessions.php"); ?>
+<?php require_once("../includes/logger/logger_error_handler.php"); ?>
 <?php if(isset($_SESSION['logged']) && $_SESSION['logged'] === TRUE) header('Location: ../index.php', TRUE, 302); ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,9 +17,9 @@
 				<div class="tab-pane in active" id="login-tab">
 					<p>Assume `Remember Me` is working.</p>
 					<form action="login.php" method="post" class="tab-pane active">
-						<?php 
+						<?php
 							if(isset($_COOKIE['login-err']) && $_COOKIE['login-err'] == 1):
-								echo '<div class="form-group has-error">'; 
+								echo '<div class="form-group has-error">';
 						?>
 						<?php else: ?>
 						<div class="form-group">
