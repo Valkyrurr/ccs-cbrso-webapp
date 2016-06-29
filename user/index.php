@@ -1,5 +1,4 @@
 <?php require_once("../includes/sessions.php"); ?>
-<?php require_once("../includes/logger/logger_error_handler.php"); ?>
 <?php if(isset($_SESSION['logged']) && $_SESSION['logged'] === TRUE) header('Location: ../index.php', TRUE, 302); ?>
 <!DOCTYPE html>
 <html lang="en">

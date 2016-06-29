@@ -1,9 +1,7 @@
 <?php
 require_once("../includes/sessions.php");
 require_once("../includes/database/database.php");
-require_once("../includes/logger/logger_error_handler.php");
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <?php $title = ucwords(basename($_SERVER['SCRIPT_NAME'], ".php")); ?>

@@ -1,5 +1,5 @@
 <?php require_once("sessions.php"); ?>
-<?php require_once("logger/logger_error_handler.php"); ?>
+<?php //require_once("logger/logger_error_handler.php"); ?>
 <div id="accordion" class="col-md-2 sidebar">
 	<img src="/ccs-cbrso-webapp/assets/imgs/logo.png" class="page-header img-responsive">
 	<ul class="nav nav-sidebar">

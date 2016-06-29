@@ -4,6 +4,20 @@ img.center {
 	display: block;
 	margin: 0 auto;
 }
+input[type="reset"] {
+	color: #337ab7;
+	background-color: #fff;
+	outline: 0 none;
+}
+input[type="reset"]:hover {
+	color: #2e6da4;
+	text-decoration: underline;
+}
+input[type="reset"]:focus {
+	color: #337ab7;
+	text-decoration: none;
+	outline: 0 none;
+}
 option{
 	max-height: 20px;
 	height: 20px;
@@ -62,7 +76,7 @@ option{
 
 .tablesorter td {
 	font-family: Arial, Sans-serif;
-	font-size: 15px;	
+	font-size: 15px;
 }
 
 .tablesorter th:nth-child(3) {

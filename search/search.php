@@ -8,7 +8,6 @@
 <?php
 require_once("../includes/sessions.php");
 require_once("../includes/database/database.php");
-require_once("../includes/logger/logger_error_handler.php");
 
 $categories = array("theme" => 1, "area" => 2, "title" => 3, "teacher" => 4, "student" => 5);
 $category_headers = array("Thematic Area", "CCS Area", "Research Topic", "Adviser", "Members");

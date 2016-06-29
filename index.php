@@ -1,5 +1,4 @@
 <?php require_once("includes/sessions.php"); ?>
-<?php require_once("includes/logger/logger_error_handler.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 <?php $title = ucwords(basename($_SERVER['SCRIPT_NAME'], ".php")); ?>
@@ -29,17 +28,17 @@
                 <thead>
                 <tbody>
                     <tr>
-                        <td><img src="http://ccs.xu.edu.ph/images/bing.jpg" alt="" class="img-thumbnail">
+                        <td><img src="http://ccs.xu.edu.ph/images/bing.jpg" alt="" class="img-circle">
                         1. Elvira B. Yaneza (BSCE, MIT)</td>
                         <td>Director</td>
                     </tr>
                     <tr>
-                        <td><img src="http://ccs.xu.edu.ph/images/bambi.jpg" alt="" class="img-thumbnail">
+                        <td><img src="http://ccs.xu.edu.ph/images/bambi.jpg" alt="" class="img-circle">
                         2. Maria Ramila I. Jimenez (BSCpE, MIT Candidate)</td>
                         <td>Research Coordinator</td>
                     </tr>
                     <tr>
-                        <td><img src="http://ccs.xu.edu.ph/images/amor.jpg" alt="" class="img-thumbnail">
+                        <td><img src="http://ccs.xu.edu.ph/images/amor.jpg" alt="" class="img-circle">
                         3. Cristina Amor T. Cajilla (BSCS, MIT Candidate)</td>
                         <td>Social Outreach Coordinator</td>
                     </tr>
