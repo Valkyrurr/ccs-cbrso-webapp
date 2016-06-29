@@ -18,12 +18,9 @@ require_once("../includes/database/database.php");
 			$categories = array("theme" => 1, "area" => 2, "title" => 3, "teacher" => 4, "student" => 5);
 			$category_headers = array("Thematic Area", "CCS Area", "Research Topic", "Adviser", "Members");
 
-			$q = trim($_GET['q']);
-		    $r = trim($_GET['r']);
-			$category = $_GET['_category'];
+			$qs = explode(" ", trim($_GET['q']));
+		    $rs = explode(" ", trim($_GET['r']));
 
-			$qs = explode(" ", $q);
-		    $rs = explode(" ", $r);
 			foreach ($qs as $key => $value) {
 				$qs[$key] = "+" . $value . "*";
 			}
@@ -34,7 +31,7 @@ require_once("../includes/database/database.php");
 		    $r = implode(" ", $rs);
 
 			$dbh = Database::getInstance();
-			$defaultsqlHead = "SELECT themes.`theme` AS theme, areas.`area` AS area, titles.`title` AS title, CONCAT(teachers.`first_name`, ' ', teachers.`middle_name`, ' ', teachers.`last_name`) AS teacher, GROUP_CONCAT(CONCAT(students.`first_name`, IF(students.middle_name IS NULL, '', CONCAT(' ', students.middle_name)), ' ', students.`last_name`, IF(students.ext IS NULL, '', CONCAT(', ', students.ext))) SEPARATOR ';') AS student
+			$defaultsqlHead = "SELECT themes.id, areas.id, teachers.id, themes.`theme` AS theme, areas.`area` AS area, titles.`title` AS title, CONCAT(teachers.`first_name`, ' ', teachers.`middle_name`, ' ', teachers.`last_name`) AS teacher, GROUP_CONCAT(CONCAT(students.`first_name`, IF(students.middle_name IS NULL, '', CONCAT(' ', students.middle_name)), ' ', students.`last_name`, IF(students.ext IS NULL, '', CONCAT(', ', students.ext))) SEPARATOR ';') AS student
 				FROM root
 				LEFT JOIN themes ON themes.id=root.theme_id
 				LEFT JOIN areas ON areas.id=root.area_id
@@ -42,15 +39,19 @@ require_once("../includes/database/database.php");
 				INNER JOIN teachers ON teachers.id=root.teacher_id
 				INNER JOIN students ON students.id=root.student_id ";
 			$defaultsqlFoot = " GROUP BY theme, area, title, teacher;";
+			$sql = "WHERE MATCH(titles.title) AGAINST(:q :r IN BOOLEAN MODE)";
 
-			foreach($categories as $key => $value){
-				if($category == $value){
-					if($value == 4 OR $value == 5){
-						$sql = "WHERE MATCH(".$key."s.first_name, ".$key."s.middle_name, ".$key."s.last_name) AGAINST(:q :r IN BOOLEAN MODE)";
-					} else {
-						$sql = "WHERE MATCH(".$key."s.".$key.") AGAINST(:q :r IN BOOLEAN MODE)";
-					}
-				}
+			if (isset($_GET['year']) && $_GET['year'] != 0) {
+				$sql .= " AND year=". $_GET['year'];
+			}
+			if (isset($_GET['theme']) && $_GET['theme'] != 0) {
+				$sql .= " AND themes.id=". $_GET['theme'];
+			}
+			if (isset($_GET['area']) && $_GET['area'] != 0) {
+				$sql .= " AND areas.id=". $_GET['area'];
+			}
+			if (isset($_GET['teacher']) && $_GET['teacher'] != 0) {
+				$sql .= " AND teachers.id=". $_GET['teacher'];
 			}
 
 			$stmt = $dbh->prepare($defaultsqlHead . $sql . $defaultsqlFoot);
@@ -118,9 +119,9 @@ require_once("../includes/database/database.php");
 					<div class="col-md-7"><input class="form-control" type="text" name="r" required></div>
 				</div>
 				<div class="form-group">
-					<label class="col-md-3 control-label">Year</label>
+					<label class="col-md-3 control-label">Year of Publication</label>
 					<div class="col-md-7">
-						<select class="form-control">
+						<select class="form-control" name="year">
 							<option value=0 selected>any Year</option>
 							<?php
 								$i = date("Y");
@@ -134,9 +135,43 @@ require_once("../includes/database/database.php");
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-md-3 control-label">Adviser</label>
+					<label class="col-md-3 control-label">Thematic Area</label>
 					<div class="col-md-7">
-						<select class="form-control">
+						<select class="form-control" name="theme">
+							<option value=0 selected>any Thematic Area</option>
+							<?php
+								$dbh = Database::getInstance();
+								$stmt = $dbh->prepare("SELECT * FROM themes WHERE 1;");
+								$stmt->execute();
+								$rows = $stmt->fetchAll();
+								foreach($rows as $row){
+									echo "<option value=" . $row['id'] . ">" . $row['theme'] .  "</option>";
+								}
+							?>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label">CCS Area</label>
+					<div class="col-md-7">
+						<select class="form-control" name="area">
+							<option value=0 selected>any CCS Area</option>
+							<?php
+								$dbh = Database::getInstance();
+								$stmt = $dbh->prepare("SELECT * FROM areas WHERE 1;");
+								$stmt->execute();
+								$rows = $stmt->fetchAll();
+								foreach($rows as $row){
+									echo "<option value=" . $row['id'] . ">" . $row['area'] .  "</option>";
+								}
+							?>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label">Adviser Name</label>
+					<div class="col-md-7">
+						<select class="form-control" name="teacher">
 							<option value=0 selected>any Adviser</option>
 							<?php
 								$dbh = Database::getInstance();
@@ -160,7 +195,7 @@ require_once("../includes/database/database.php");
 						</select>
 					</div>
 				</div>
-				<div class="form-group">
+				<!-- <div class="form-group">
 					<label class="col-md-3 control-label">Category</label>
 					<div class="col-md-7">
 						<div class="radio">
@@ -171,7 +206,7 @@ require_once("../includes/database/database.php");
 							<label><input value="5" name="_category" type="radio">Student Name</label>
 						</div>
 					</div>
-				</div>
+				</div> -->
 				<div class="form-group">
 					<div class="col-md-7 col-md-offset-3">
 						<input class="btn btn-md btn-primary" name="submit" type="submit" value="Search" />
